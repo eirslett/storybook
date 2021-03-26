@@ -17,11 +17,17 @@ const existsSync = (filePath) => !!mockFiles[filePath];
 const lstatSync = (filePath) => ({
   isFile: () => !!mockFiles[filePath],
 });
+const statSync = (filePath) => ({
+  isFile: () => !!mockFiles[filePath],
+});
+const realpathSync = (filePath = '') => filePath;
 
 // eslint-disable-next-line no-underscore-dangle
 fs.__setMockFiles = __setMockFiles;
 fs.readFileSync = readFileSync;
 fs.existsSync = existsSync;
 fs.lstatSync = lstatSync;
+fs.statSync = statSync;
+fs.realpathSync = realpathSync;
 
 module.exports = fs;
